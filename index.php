@@ -72,34 +72,80 @@
 </head>
 
 <body>
-<div class="container my-4">
+<div class="container d-flex flex-column align-content-center my-4">
+
     <h1 class="text-center my-5">HOTELS</h1>
-<table class="table pt-5">
-  <thead>
-    <tr>
-      <th scope="col"><h4>Name</h4></th>
-      <th scope="col"><h4>Description</h4></th>
-      <th scope="col"><h4>Parking</h4></th>
-      <th scope="col"><h4>Vote</h4></th>
-      <th scope="col"><h4>Distance to Center</h4></th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach($hotels as $hotel) : ?>
-    <tr>
-      <th scope="row"><i class="fa-solid fa-hotel"></i> <?= $hotel['name'] ?></th>
-      <td><i class="fa-regular fa-comment"></i> <?= $hotel['description'] ?></td>
-      <?php if ($hotel['parking']) : ?>
-        <td><i class="fa-solid fa-circle-check fa-xl"></i></td>
-        <?php else : ?>
-            <td><i class="fa-solid fa-circle-xmark fa-xl"></i></td>
-        <?php endif; ?>
-      <td><?= $hotel['vote'] ?> <i class="fa-solid fa-star"></i> </td>
-      <td><?= $hotel['distance_to_center'] ?> km</td>
-    </tr>
-    <?php endforeach; ?>
-  </tbody>
-</table>
+
+    <!-- PARKING SELECT -->
+    <div class="filter mb-5">
+        <form action="" method="GET" class="d-flex w-50  align-items-center justify-content-around">
+            <div class="form-check ">
+                <input class="form-check-input" type="radio" value="true" name="park" id="park" >
+                <label class="form-check-label" for="park">
+                    With Parking
+                </label>
+            </div>
+            <div class="form-check ">
+                <input class="form-check-input" type="radio" value="false" name="park" name="flexRadioDefault" id="nopark">
+                <label class="form-check-label" for="nopark">
+                    Without Parking
+                </label>
+            </div>
+            <select class="form-select w-25" name="vote" aria-label="Default select example">
+                <option value="" selected>Filter By Vote</option>
+                <option value="1">1 &#11088;</option>
+                <option value="2">2 &#11088;</option>
+                <option value="3">3 &#11088; </option>
+                <option value="4">4 &#11088;</option>
+                <option value="5">5 &#11088;</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+    <table class="table pt-5">
+        <thead>
+            <tr>
+                <th scope="col">
+                    <h4>Name</h4>
+                </th>
+                <th scope="col">
+                    <h4>Description</h4>
+                </th>
+                <th scope="col">
+                    <h4>Parking</h4>
+                </th>
+                <th scope="col">
+                    <h4>Vote</h4>
+                </th>
+                <th scope="col">
+                    <h4>Distance to Center</h4>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($hotels as $hotel) : ?>
+            <tr>
+                <th scope="row"><i class="fa-solid fa-hotel"></i>
+                    <?= $hotel['name'] ?>
+                </th>
+                <td><i class="fa-regular fa-comment"></i>
+                    <?= $hotel['description'] ?>
+                </td>
+                <?php if ($hotel['parking']) : ?>
+                <td><i class="fa-solid fa-circle-check fa-xl"></i></td>
+                <?php else : ?>
+                <td><i class="fa-solid fa-circle-xmark fa-xl"></i></td>
+                <?php endif; ?>
+                <td>
+                    <?= $hotel['vote'] ?> <i class="fa-solid fa-star fa-xl"></i>
+                </td>
+                <td>
+                    <?= $hotel['distance_to_center'] ?> km
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 </div>
 
 </body>
