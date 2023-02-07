@@ -41,6 +41,9 @@
 
     ];
 
+    $vote = $_GET['vote'] ?? '' ;
+    $parking = $_GET['park'] ?? '';
+
 
 
 ?>
@@ -86,7 +89,7 @@
                 </label>
             </div>
             <div class="form-check ">
-                <input class="form-check-input" type="radio" value="false" name="park" name="flexRadioDefault" id="nopark">
+                <input class="form-check-input" type="radio" value="" name="park" name="flexRadioDefault" id="nopark">
                 <label class="form-check-label" for="nopark">
                     Without Parking
                 </label>
@@ -100,6 +103,7 @@
                 <option value="5">5 &#11088;</option>
             </select>
             <button type="submit" class="btn btn-primary">Search</button>
+            <a href="http://localhost/php-hotel"  class="btn btn-danger">Reset</a>
         </form>
     </div>
     <table class="table pt-5">
@@ -124,6 +128,8 @@
         </thead>
         <tbody>
             <?php foreach($hotels as $hotel) : ?>
+                <?php if ($hotel['vote'] >= $vote) : ?>
+                <?php if ($hotel['parking'] == $parking) : ?>
             <tr>
                 <th scope="row"><i class="fa-solid fa-hotel"></i>
                     <?= $hotel['name'] ?>
@@ -143,6 +149,8 @@
                     <?= $hotel['distance_to_center'] ?> km
                 </td>
             </tr>
+            <?php endif; ?>
+            <?php endif; ?>
             <?php endforeach; ?>
         </tbody>
     </table>
